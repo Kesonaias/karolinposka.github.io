@@ -1,16 +1,15 @@
 body {
-    margin: 0px;
+    margin: 120px;
 }
 
 .karolin {
     width: 100%;
     height: auto;
-    opacity: 0.5;
+    opacity: 1;
 }
 
 .rain {
     background: url('../images/no-signal.gif');
     height: 100%;
-    opacity: 0.5;
-    display: block;
+    opacity: 1;
 }
