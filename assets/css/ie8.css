@@ -1,155 +1,114 @@
 /*
-	Helios by HTML5 UP
+	Big Picture by HTML5 UP
 	html5up.net | @n33co
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
-/* Basic */
-
-	a {
-		border-bottom: solid 1px #ddd;
-	}
-
-	hr {
-		border-top: solid 1px #777;
-		border-bottom: solid 1px #777;
-	}
-
-	.timestamp {
-		color: #777;
-	}
-
 /* Section/Article */
 
-	section > .last-child, section.last-child, article > .last-child, article.last-child {
+	section > .last-child,
+	article > .last-child,
+	section.last-child,
+	article.last-child {
 		margin-bottom: 0;
 	}
 
-/* List */
+/* Form */
 
-	ul.divided li {
-		border-top: solid 1px #777;
-	}
-
-	ul.menu li {
-		border-left: solid 1px #777;
-	}
-
-	ul.icons {
-		background: #333;
+	form input[type="text"],
+	form input[type="email"],
+	form input[type="password"],
+	form select,
+	form textarea {
+		position: relative;
 		-ms-behavior: url("assets/js/ie/PIE.htc");
+		border: solid 1px #ccc;
 	}
 
 /* Button */
 
-	.button {
+	input[type="button"],
+	input[type="submit"],
+	input[type="reset"],
+	.button,
+	button {
+		position: relative;
 		-ms-behavior: url("assets/js/ie/PIE.htc");
 	}
 
-/* Icons */
+		input[type="button"].down,
+		input[type="submit"].down,
+		input[type="reset"].down,
+		.button.down,
+		button.down {
+			text-indent: 0;
+		}
 
-	.icon.circled {
-		-ms-behavior: url("assets/js/ie/PIE.htc");
-	}
+/* Intro */
 
-/* Header */
-
-	#header {
+	#intro {
 		-ms-behavior: url("assets/js/ie/backgroundsize.min.htc");
+		background: url("../../images/intro.jpg");
+		background-size: cover;
 	}
 
-	body.homepage #header {
-		height: auto;
-		min-height: 0;
-		padding: 12em 0 12em 0;
-	}
-
-		body.homepage #header:after {
-			display: none;
+		#intro .content {
+			position: relative;
+			z-index: 1;
 		}
 
-/* Nav */
-
-	#nav > ul:before, #nav > ul:after {
-		border-top: solid 1px #777;
-		border-bottom: solid 1px #777;
-	}
-
-	#nav > ul > li {
-		-ms-behavior: url("assets/js/ie/PIE.htc");
-	}
-
-		#nav > ul > li.active {
-			border-color: #999;
+		#intro:after {
+			content: '';
+			background: url("images/overlay.png");
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
 		}
 
-	.dropotron {
-		background: #fff;
-		-ms-behavior: url("assets/js/ie/PIE.htc");
+/* One */
+
+	#one {
+		-ms-behavior: url("assets/js/ie/backgroundsize.min.htc");
+		background: url("../../images/one.jpg");
+		background-size: cover;
 	}
 
-		.dropotron li {
-			border-color: #eee;
-			padding-right: 1em;
-			color: #5b5b5b;
+		#one .content {
+			position: relative;
+			z-index: 1;
 		}
 
-		.dropotron.level-0 {
-			box-shadow: none !important;
-			margin-top: 1em;
+		#one.left:before, #one.right:after {
+			content: '';
+			background: url("images/overlay.png");
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
 		}
 
-/* Carousel */
+/* Two */
 
-	.carousel .forward, .carousel .backward {
-		border-radius: 100%;
-		background-color: #483949;
-		width: 7em;
-		height: 7em;
-		margin-top: -3.5em;
-		border-radius: 100%;
-		-ms-behavior: url("assets/js/ie/PIE.htc");
+	#two {
+		-ms-behavior: url("assets/js/ie/backgroundsize.min.htc");
+		background: url("../../images/two.jpg");
+		background-size: cover;
 	}
 
-		.carousel .forward:before, .carousel .backward:before {
-			display: none;
+		#two .content {
+			position: relative;
+			z-index: 1;
 		}
 
-	.carousel .forward {
-		right: -3.5em;
-	}
-
-	.carousel .backward {
-		left: -3.5em;
-	}
-
-/* Footer */
-
-	#footer ul.divided li {
-		border-color: #3B373C;
-	}
-
-	#footer ul.menu li {
-		border-color: #3B373C;
-	}
-
-	#footer hr {
-		border-color: #3B373C;
-	}
-
-	#footer .icons {
-		background: #2F2930;
-	}
-
-	#footer .copyright {
-		color: #777;
-	}
-
-		#footer .copyright a {
-			color: #aaa;
-			border: 0;
+		#two.left:before, #two.right:after {
+			content: '';
+			background: url("images/overlay.png");
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
 		}
-
-			#footer .copyright a:hover {
-				color: #ccc;
-			}

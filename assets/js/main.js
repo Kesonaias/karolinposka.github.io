@@ -1,45 +1,45 @@
 /*
-	Helios by HTML5 UP
+	Big Picture by HTML5 UP
 	html5up.net | @n33co
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
 (function($) {
 
-	var settings = {
-
-		// Carousels
-			carousels: {
-				speed: 4,
-				fadeIn: true,
-				fadeDelay: 250
-			},
-
-	};
-
 	skel.breakpoints({
-		wide: '(max-width: 1680px)',
-		normal: '(max-width: 1280px)',
-		narrow: '(max-width: 960px)',
-		narrower: '(max-width: 840px)',
-		mobile: '(max-width: 736px)'
+		wide: '(max-width: 1920px)',
+		normal: '(max-width: 1680px)',
+		narrow: '(max-width: 1280px)',
+		narrower: '(max-width: 1000px)',
+		mobile: '(max-width: 736px)',
+		mobilenarrow: '(max-width: 480px)',
 	});
 
 	$(function() {
 
 		var	$window = $(window),
-			$body = $('body');
+			$body = $('body'),
+			$header = $('#header'),
+			$all = $body.add($header);
 
 		// Disable animations/transitions until the page has loaded.
 			$body.addClass('is-loading');
 
 			$window.on('load', function() {
-				$body.removeClass('is-loading');
+				window.setTimeout(function() {
+					$body.removeClass('is-loading');
+				}, 0);
 			});
 
-		// CSS polyfills (IE<9).
-			if (skel.vars.IEVersion < 9)
-				$(':last-child').addClass('last-child');
+		// Touch mode.
+			skel.on('change', function() {
+
+				if (skel.vars.mobile || skel.breakpoint('mobile').active)
+					$body.addClass('is-touch');
+				else
+					$body.removeClass('is-touch');
+
+			});
 
 		// Fix: Placeholder polyfill.
 			$('form').placeholder();
@@ -52,197 +52,181 @@
 				);
 			});
 
-		// Dropdowns.
-			$('#nav > ul').dropotron({
-				mode: 'fade',
-				speed: 350,
-				noOpenerFade: true,
-				alignment: 'center'
+		// CSS polyfills (IE<9).
+			if (skel.vars.IEVersion < 9)
+				$(':last-child').addClass('last-child');
+
+		// Gallery.
+			$window.on('load', function() {
+				$('.gallery').poptrox({
+					baseZIndex: 10001,
+					useBodyOverflow: false,
+					usePopupEasyClose: false,
+					overlayColor: '#1f2328',
+					overlayOpacity: 0.65,
+					usePopupDefaultStyling: false,
+					usePopupCaption: true,
+					popupLoaderText: '',
+					windowMargin: (skel.breakpoint('mobile').active ? 5 : 50),
+					usePopupNav: true
+				});
 			});
 
-		// Scrolly links.
-			$('.scrolly').scrolly();
+		// Section transitions.
+			if (!skel.vars.mobile
+			&&	skel.canUse('transition')) {
 
-		// Off-Canvas Navigation.
+				var on = function() {
 
-			// Navigation Button.
-				$(
-					'<div id="navButton">' +
-						'<a href="#navPanel" class="toggle"></a>' +
-					'</div>'
-				)
-					.appendTo($body);
+					// Generic sections.
+						$('.main.style1')
+							.scrollex({
+								mode:		'middle',
+								delay:		100,
+								initialize:	function() { $(this).addClass('inactive'); },
+								terminate:	function() { $(this).removeClass('inactive'); },
+								enter:		function() { $(this).removeClass('inactive'); },
+								leave:		function() { $(this).addClass('inactive'); }
+							});
 
-			// Navigation Panel.
-				$(
-					'<div id="navPanel">' +
-						'<nav>' +
-							$('#nav').navList() +
-						'</nav>' +
-					'</div>'
-				)
-					.appendTo($body)
-					.panel({
-						delay: 500,
-						hideOnClick: true,
-						hideOnSwipe: true,
-						resetScroll: true,
-						resetForms: true,
-						target: $body,
-						visibleClass: 'navPanel-visible'
-					});
+						$('.main.style2')
+							.scrollex({
+								mode:		'middle',
+								delay:		100,
+								initialize:	function() { $(this).addClass('inactive'); },
+								terminate:	function() { $(this).removeClass('inactive'); },
+								enter:		function() { $(this).removeClass('inactive'); },
+								leave:		function() { $(this).addClass('inactive'); }
+							});
 
-			// Fix: Remove navPanel transitions on WP<10 (poor/buggy performance).
-				if (skel.vars.os == 'wp' && skel.vars.osVersion < 10)
-					$('#navButton, #navPanel, #page-wrapper')
-						.css('transition', 'none');
+					// Work.
+						$('#work')
+							.scrollex({
+								top:		'40vh',
+								bottom:		'30vh',
+								delay:		50,
+								initialize:	function() {
 
-		// Carousels.
-			$('.carousel').each(function() {
+												var t = $(this);
 
-				var	$t = $(this),
-					$forward = $('<span class="forward"></span>'),
-					$backward = $('<span class="backward"></span>'),
-					$reel = $t.children('.reel'),
-					$items = $reel.children('article');
+												t.find('.row.images')
+													.addClass('inactive');
 
-				var	pos = 0,
-					leftLimit,
-					rightLimit,
-					itemWidth,
-					reelWidth,
-					timerId;
+											},
+								terminate:	function() {
 
-				// Items.
-					if (settings.carousels.fadeIn) {
+												var t = $(this);
 
-						$items.addClass('loading');
+												t.find('.row.images')
+													.removeClass('inactive');
 
-						$t.onVisible(function() {
-							var	timerId,
-								limit = $items.length - Math.ceil($window.width() / itemWidth);
+											},
+								enter:		function() {
 
-							timerId = window.setInterval(function() {
-								var x = $items.filter('.loading'), xf = x.first();
+												var t = $(this),
+													rows = t.find('.row.images'),
+													length = rows.length,
+													n = 0;
 
-								if (x.length <= limit) {
+												rows.each(function() {
+													var row = $(this);
+													window.setTimeout(function() {
+														row.removeClass('inactive');
+													}, 100 * (length - n++));
+												});
 
-									window.clearInterval(timerId);
-									$items.removeClass('loading');
-									return;
+											},
+								leave:		function(t) {
 
-								}
+												var t = $(this),
+													rows = t.find('.row.images'),
+													length = rows.length,
+													n = 0;
 
-								if (skel.vars.IEVersion < 10) {
+												rows.each(function() {
+													var row = $(this);
+													window.setTimeout(function() {
+														row.addClass('inactive');
+													}, 100 * (length - n++));
+												});
 
-									xf.fadeTo(750, 1.0);
-									window.setTimeout(function() {
-										xf.removeClass('loading');
-									}, 50);
+											}
+							});
 
-								}
-								else
-									xf.removeClass('loading');
+					// Contact.
+						$('#contact')
+							.scrollex({
+								top:		'50%',
+								delay:		50,
+								initialize:	function() { $(this).addClass('inactive'); },
+								terminate:	function() { $(this).removeClass('inactive'); },
+								enter:		function() { $(this).removeClass('inactive'); },
+								leave:		function() { $(this).addClass('inactive'); }
+							});
 
-							}, settings.carousels.fadeDelay);
-						}, 50);
-					}
+				};
 
-				// Main.
-					$t._update = function() {
-						pos = 0;
-						rightLimit = (-1 * reelWidth) + $window.width();
-						leftLimit = 0;
-						$t._updatePos();
-					};
+				var off = function() {
 
-					if (skel.vars.IEVersion < 9)
-						$t._updatePos = function() { $reel.css('left', pos); };
+					// Generic sections.
+						$('.main.style1')
+							.unscrollex();
+
+						$('.main.style2')
+							.unscrollex();
+
+					// Work.
+						$('#work')
+							.unscrollex();
+
+					// Contact.
+						$('#contact')
+							.unscrollex();
+
+				};
+
+				skel.on('change', function() {
+
+					if (skel.breakpoint('mobile').active)
+						(off)();
 					else
-						$t._updatePos = function() { $reel.css('transform', 'translate(' + pos + 'px, 0)'); };
+						(on)();
 
-				// Forward.
-					$forward
-						.appendTo($t)
-						.hide()
-						.mouseenter(function(e) {
-							timerId = window.setInterval(function() {
-								pos -= settings.carousels.speed;
+				});
 
-								if (pos <= rightLimit)
-								{
-									window.clearInterval(timerId);
-									pos = rightLimit;
-								}
+			}
 
-								$t._updatePos();
-							}, 10);
-						})
-						.mouseleave(function(e) {
-							window.clearInterval(timerId);
-						});
+		// Events.
+			var resizeTimeout, resizeScrollTimeout;
 
-				// Backward.
-					$backward
-						.appendTo($t)
-						.hide()
-						.mouseenter(function(e) {
-							timerId = window.setInterval(function() {
-								pos += settings.carousels.speed;
+			$window
+				.resize(function() {
 
-								if (pos >= leftLimit) {
+					// Disable animations/transitions.
+						$body.addClass('is-resizing');
 
-									window.clearInterval(timerId);
-									pos = leftLimit;
+					window.clearTimeout(resizeTimeout);
 
-								}
+					resizeTimeout = window.setTimeout(function() {
 
-								$t._updatePos();
-							}, 10);
-						})
-						.mouseleave(function(e) {
-							window.clearInterval(timerId);
-						});
+						// Update scrolly links.
+							$('a[href^=#]').scrolly({
+								speed: 1500,
+								offset: $header.outerHeight() - 1
+							});
 
-				// Init.
-					$window.load(function() {
+						// Re-enable animations/transitions.
+							window.setTimeout(function() {
+								$body.removeClass('is-resizing');
+								$window.trigger('scroll');
+							}, 0);
 
-						reelWidth = $reel[0].scrollWidth;
+					}, 100);
 
-						skel.on('change', function() {
-
-							if (skel.vars.touch) {
-
-								$reel
-									.css('overflow-y', 'hidden')
-									.css('overflow-x', 'scroll')
-									.scrollLeft(0);
-								$forward.hide();
-								$backward.hide();
-
-							}
-							else {
-
-								$reel
-									.css('overflow', 'visible')
-									.scrollLeft(0);
-								$forward.show();
-								$backward.show();
-
-							}
-
-							$t._update();
-
-						});
-
-						$window.resize(function() {
-							reelWidth = $reel[0].scrollWidth;
-							$t._update();
-						}).trigger('resize');
-
-					});
-
-			});
+				})
+				.load(function() {
+					$window.trigger('resize');
+				});
 
 	});
 
