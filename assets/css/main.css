@@ -2413,7 +2413,7 @@
 			.main.style1:before {
 				content: '';
 				display: inline-block;
-				vertical-align: middle;
+				vertical-align: bottom;
 				height: 100%;
 			}
 
@@ -3001,11 +3001,10 @@
 /* Intro */
 
 	#intro {
-		background: url("images/overlay.png"), url("../../images/cover.jpg");
-		background-size: 256px 256px, cover;
-		background-attachment: fixed, fixed;
-		background-position: top left, bottom center;
-		background-repeat: repeat, no-repeat;
+		background: url("../../images/background2.jpg");
+		background-size: cover;		
+		background-position: right top;
+		background-repeat: no-repeat;
 	}
 
 /* One */
