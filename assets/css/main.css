@@ -3001,9 +3001,9 @@
 /* Intro */
 
 	#intro {
-		background: url("../../images/background2.jpg");
+		background: url("../../images/background.jpg");
 		background-size: cover;		
-		background-position: right top;
+		background-position: top center;
 		background-repeat: no-repeat;
 	}
 
