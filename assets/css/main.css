@@ -3,7 +3,7 @@
 
 
 
-#separator {
+.separator {
     padding-top: 1em;
     background-color: white;
 }
@@ -2495,7 +2495,9 @@
 		.main.style3 {
 			text-align: center;
             padding-top: 3em;
-            padding-bottom: 3em;
+            padding-bottom: 1em;
+            padding-left: 1em;
+            padding-right: 1em;
 		}
 
 			.main.style3 .content > header {
@@ -3515,7 +3517,7 @@
 
 			.main.style3 {
 				text-align: center;
-				padding: 3em 10px 3em 10px;
+				padding: 3em 10px 1em 10px;
 			}
 
 		/* Header */
