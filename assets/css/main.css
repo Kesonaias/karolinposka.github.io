@@ -3010,7 +3010,7 @@
 /* Intro */
 
 	#intro {
-		background: url("../../images/background.jpg");
+		background: url("../../images/cover.jpg");
 		background-size: cover;		
 		background-position: top center;
 		background-repeat: no-repeat;
@@ -3019,7 +3019,7 @@
 /* Now */
 
 	#now {
-		background: url("images/overlay.png"), url("../../images/one.jpg");
+		background: url("../../images/one.jpg");
 		background-size: cover;				
 		background-repeat: no-repeat;
         background-attachment: fixed;
