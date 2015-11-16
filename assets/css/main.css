@@ -3019,7 +3019,7 @@
 /* Now */
 
 	#now {
-		background: url("../../images/one.jpg");
+		background: url("images/overlay.png"), url("../../images/one.jpg");
 		background-size: cover;				
 		background-repeat: no-repeat;
         background-attachment: fixed;
