@@ -1,6 +1,13 @@
 @import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,900");
 @import url("font-awesome.min.css");
 
+
+
+#separator {
+    padding-top: 1em;
+    background-color: white;
+}
+
 /*
 	Big Picture by HTML5 UP
 	html5up.net | @n33co
