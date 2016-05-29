@@ -2255,6 +2255,15 @@
 				background-image: url("images/arrow.svg");
 			}
 
+    .button-play {
+        font-size: 2em;        
+        color: inherit;
+    }
+
+        .button-play:hover {
+            color: white;
+        }
+
 /* Spotlight */
 
 	.spotlight {
