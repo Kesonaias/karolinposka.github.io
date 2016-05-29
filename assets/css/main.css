@@ -2266,7 +2266,7 @@
 		display: -webkit-flex;
 		display: -ms-flex;
 		display: flex;
-        margin-bottom: 1.5%;
+        margin-bottom: 1em;
 	}
 
 		.spotlight .image {
@@ -2497,8 +2497,8 @@
 			text-align: center;
             padding-top: 3em;
             padding-bottom: 1em;
-            padding-left: 1em;
-            padding-right: 1em;
+            padding-left: 2em;
+            padding-right: 2em;
 		}
 
 			.main.style3 .content > header {
