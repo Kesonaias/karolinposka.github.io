@@ -2266,6 +2266,7 @@
 		display: -webkit-flex;
 		display: -ms-flex;
 		display: flex;
+        margin-bottom: 1.5%;
 	}
 
 		.spotlight .image {
